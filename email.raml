@@ -1,0 +1,30 @@
+#%RAML 1.0
+
+# Copyright (c) 2017 Magomed Abdurakhmanov, Hypertino
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+title: Email service API
+baseUri: hb://email
+
+types:
+  EmailMessage:
+    type: object
+    properties:
+      template:
+        type: string
+        description: Template identifier
+      language?:
+        type: string
+        description: Language in format of `Accept-Language`
+      data: object
+
+/emails:
+  post:
+    description: |
+      Format and send email.
+    body:
+      application/json: EmailMessage
+    responses:
+      201:
